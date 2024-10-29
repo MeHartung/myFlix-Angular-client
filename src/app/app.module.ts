@@ -1,3 +1,4 @@
+// src/app/app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,29 +11,36 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
-export const routes: Routes = [
-  { path: 'register', component: UserRegistrationFormComponent },
-  { path: 'login', component: UserLoginFormComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+// Определение маршрутов
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' }
 ];
 
 @NgModule({
   declarations: [
+    AppComponent,
+    WelcomePageComponent,
     UserRegistrationFormComponent,
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    MovieCardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(appRoutes), // Подключение маршрутизации
     MatInputModule,
     MatButtonModule,
     MatCardModule,
@@ -40,7 +48,7 @@ export const routes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    AppComponent 
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
