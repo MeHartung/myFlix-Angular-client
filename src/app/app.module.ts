@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'register', component: UserRegistrationFormComponent },
   { path: 'login', component: UserLoginFormComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
@@ -24,7 +24,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
     UserRegistrationFormComponent,
     UserLoginFormComponent
   ],
@@ -32,15 +31,16 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule, // добавлено
-    RouterModule.forRoot(routes, { useHash: true }), 
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes, { useHash: true }),
     MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    AppComponent // Переместили AppComponent в imports
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
