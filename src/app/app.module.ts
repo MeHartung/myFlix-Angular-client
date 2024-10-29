@@ -40,7 +40,7 @@ export const routes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    AppComponent // Переместили AppComponent в imports
+    AppComponent 
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

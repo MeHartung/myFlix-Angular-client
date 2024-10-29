@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterModule] // Импортируем RouterModule для работы с router-outlet
+  imports: [RouterModule] 
 })
 export class AppComponent {
   title = 'myFlix-Angular-client';
