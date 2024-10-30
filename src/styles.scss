@@ -1,30 +1,13 @@
-// Custom Theming for Angular Material
-// Documentation: https://material.angular.io/guide/theming
+// src/styles.scss
 @use '@angular/material' as mat;
 
-// Include the core styles for Angular Material once across your app.
-@include mat.core();
 
-// Define the color palettes for your theme
-$cineVerse-Angular-client-primary: mat.define-palette(mat.$indigo-palette);
-$cineVerse-Angular-client-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$cineVerse-Angular-client-warn: mat.define-palette(mat.$red-palette);
+@include mat.m2-core();
 
-// Define a light theme
-$cineVerse-Angular-client-theme: mat.define-light-theme((
-  color: (
-    primary: $cineVerse-Angular-client-primary,
-    accent: $cineVerse-Angular-client-accent,
-    warn: $cineVerse-Angular-client-warn,
-  ),
-  typography: mat.define-typography-config(),
-  density: 0,
-));
 
-// Apply the theme to all components
-@include mat.all-component-themes($cineVerse-Angular-client-theme);
+@include mat.m2-all-component-themes(mat.m2-light-theme);
 
-// Global styles for the app
+
 html, body { 
   height: 100%; 
 }
