@@ -1,15 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
-export class UserLoginFormComponent implements OnInit {
+export class UserLoginFormComponent {
   @Input() loginData = { Username: '', Password: '' };
 
   constructor(
@@ -17,21 +17,20 @@ export class UserLoginFormComponent implements OnInit {
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {}
+  ) { }
 
   loginUser(): void {
     this.fetchApiData.userLogin(this.loginData).subscribe(
       (result) => {
-        localStorage.setItem('user', result.user);
+        localStorage.setItem('user', JSON.stringify(result.user));
         localStorage.setItem('token', result.token);
         this.dialogRef.close();
-        this.snackBar.open('Login successful!', 'OK', { duration: 2000 });
-        this.router.navigate(['movies']);  // Перенаправление на страницу фильмов
+        this.router.navigate(['movies']);
+        this.snackBar.open('Logged in', 'OK', { duration: 2000 });
       },
       (error) => {
-        this.snackBar.open(error.error?.message || 'An error occurred', 'OK', { duration: 2000 });
+        console.error(error);
+        this.snackBar.open('Failed to log in', 'OK', { duration: 2000 });
       }
     );
   }

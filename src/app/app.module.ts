@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy, CommonModule } from '@angular/common';
 
@@ -21,10 +22,13 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
 import { SynopsisDialogComponent } from './synopsis-dialog/synopsis-dialog.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent }, // Путь для профиля пользователя
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }
 ];
 
@@ -37,7 +41,9 @@ const appRoutes: Routes = [
     MovieCardComponent,
     GenreDialogComponent,
     DirectorDialogComponent,
-    SynopsisDialogComponent
+    SynopsisDialogComponent,
+    NavbarComponent,
+    UserProfileComponent // Зарегистрирован UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +58,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
+    MatToolbarModule, // Добавлен MatToolbarModule
     BrowserAnimationsModule,
-    CommonModule // Добавлен CommonModule для поддержки директив Angular, таких как *ngIf
+    CommonModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }
