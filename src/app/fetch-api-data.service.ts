@@ -18,11 +18,7 @@ export class FetchApiDataService {
   private getUserId(): string {
     try {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
-      const userId = user._id;
-      if (!userId) {
-        console.warn("User ID is missing in the user object:", user);
-      }
-      return userId || '';
+      return user._id || '';
     } catch (error) {
       console.error("Error parsing user from localStorage:", error);
       return '';
@@ -45,9 +41,20 @@ export class FetchApiDataService {
     );
   }
 
+  public userRegistration(userData: any): Observable<any> {
+    return this.http.post(apiUrl + 'users', userData).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   public getUser(): Observable<any> {
     const userId = this.getUserId();
-    return this.http.get(apiUrl + `users/${userId}`, {
+    if (!userId) {
+      console.error("User ID is missing. Cannot fetch user data.");
+      return throwError("User ID is missing");
+    }
+
+    return this.http.get(`${apiUrl}users/${userId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.getToken()}`,
       }),
@@ -70,7 +77,29 @@ export class FetchApiDataService {
 
   public getFavoriteMovies(): Observable<any> {
     const userId = this.getUserId();
-    return this.http.get(apiUrl + `users/${userId}/movies`, {
+    if (!userId) {
+      console.error("User ID is missing. Cannot fetch favorite movies.");
+      return throwError("User ID is missing");
+    }
+
+    return this.http.get(`${apiUrl}users/${userId}/movies`, {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.getToken()}`,
+      }),
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+
+  public editUser(updatedUser: any): Observable<any> {
+    const userId = this.getUserId();
+    if (!userId) {
+      console.error("User ID is missing. Cannot update user data.");
+      return throwError("User ID is missing");
+    }
+
+    return this.http.put(`${apiUrl}users/${userId}`, updatedUser, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.getToken()}`,
       }),
@@ -87,7 +116,7 @@ export class FetchApiDataService {
       return throwError("User ID is missing");
     }
 
-    return this.http.post(apiUrl + `users/${userId}/movies/${movieId}`, {}, {
+    return this.http.post(`${apiUrl}users/${userId}/movies/${movieId}`, {}, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.getToken()}`,
       }),
@@ -100,26 +129,18 @@ export class FetchApiDataService {
     );
   }
 
-  public editUser(userDetails: any): Observable<any> {
-    const userId = this.getUserId();
-    return this.http.put(apiUrl + `users/${userId}`, userDetails, {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.getToken()}`,
-      }),
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  }
-
   public deleteFavoriteMovie(movieId: string): Observable<any> {
     const userId = this.getUserId();
-    return this.http.delete(apiUrl + `users/${userId}/movies/${movieId}`, {
+    if (!userId) {
+      console.error("User ID is missing. Cannot delete favorite movie.");
+      return throwError("User ID is missing");
+    }
+
+    return this.http.delete(`${apiUrl}users/${userId}/movies/${movieId}`, {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.getToken()}`,
       }),
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MovieInfoComponent } from '../movie-info/movie-info.component';
+import { GenreDialogComponent } from '../genre-dialog/genre-dialog.component';
+import { DirectorDialogComponent } from '../director-dialog/director-dialog.component';
+import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -30,7 +32,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   openGenreDialog(genre: any): void {
-    this.dialog.open(MovieInfoComponent, {
+    this.dialog.open(GenreDialogComponent, {
       data: {
         title: genre.Name,
         content: genre.Description
@@ -39,7 +41,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   openDirectorDialog(director: any): void {
-    this.dialog.open(MovieInfoComponent, {
+    this.dialog.open(DirectorDialogComponent, {
       data: {
         title: director.Name,
         content: director.Bio
@@ -48,7 +50,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   openSynopsisDialog(description: string): void {
-    this.dialog.open(MovieInfoComponent, {
+    this.dialog.open(SynopsisDialogComponent, {
       data: {
         title: 'Synopsis',
         content: description

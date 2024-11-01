@@ -22,19 +22,19 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUser(): void {
-    this.fetchApiData.getUser().subscribe((user) => {
+    this.fetchApiData.getUser().subscribe((user: any) => {
       this.user = user;
     });
   }
 
   getFavoriteMovies(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((movies) => {
+    this.fetchApiData.getFavoriteMovies().subscribe((movies: any) => {
       this.favoriteMovies = movies;
     });
   }
 
-  updateUser(): void {
-    this.fetchApiData.editUser(this.user).subscribe((result) => {
+  updateProfile(): void {
+    this.fetchApiData.editUser(this.user).subscribe((result: any) => {
       this.snackBar.open('Profile updated successfully!', 'OK', {
         duration: 2000,
       });
