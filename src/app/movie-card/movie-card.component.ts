@@ -13,6 +13,7 @@ import { SynopsisDialogComponent } from '../synopsis-dialog/synopsis-dialog.comp
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  favoriteMovies: Set<string> = new Set();
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -22,6 +23,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.loadFavoriteMovies();
   }
 
   getMovies(): void {
@@ -29,6 +31,16 @@ export class MovieCardComponent implements OnInit {
       this.movies = resp;
       console.log(this.movies);
     });
+  }
+
+  loadFavoriteMovies(): void {
+    this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
+      this.favoriteMovies = new Set(resp.map((movie: any) => movie._id));
+    });
+  }
+
+  isFavorite(id: string): boolean {
+    return this.favoriteMovies.has(id);
   }
 
   openGenreDialog(genre: any): void {
@@ -60,7 +72,17 @@ export class MovieCardComponent implements OnInit {
 
   addToFavorite(id: string): void {
     this.fetchApiData.addFavoriteMovie(id).subscribe(() => {
+      this.favoriteMovies.add(id);
       this.snackBar.open('Movie added to favorites.', 'OK', {
+        duration: 2000,
+      });
+    });
+  }
+
+  removeFromFavorite(id: string): void {
+    this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
+      this.favoriteMovies.delete(id);
+      this.snackBar.open('Movie removed from favorites.', 'OK', {
         duration: 2000,
       });
     });

@@ -11,5 +11,15 @@
     <button mat-raised-button color="primary" class="update-button" (click)="updateProfile()">Update Profile</button>
 
     <h3 class="favorite-movies-section">Your Favorite Movies</h3>
-
+    <mat-list *ngIf="favoriteMovies.length > 0">
+        <mat-list-item *ngFor="let movie of favoriteMovies">
+            <img matListItemAvatar src="{{movie.ImagePath}}" />
+            <div matListItemTitle>{{movie.Title}}</div>
+            <div matListItemLine>Directed by: {{movie.Director.Name}}</div>
+            <button mat-icon-button color="warn" (click)="removeFavorite(movie._id)">
+                <mat-icon>remove_circle</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+    <p *ngIf="favoriteMovies.length === 0">You have no favorite movies yet.</p>
 </div>

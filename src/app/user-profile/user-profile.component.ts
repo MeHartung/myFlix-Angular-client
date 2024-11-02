@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,18 +19,19 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    this.getFavoriteMovies();
   }
 
   getUser(): void {
     this.fetchApiData.getUser().subscribe((user: any) => {
       this.user = user;
+      this.getFavoriteMovies();
     });
   }
 
   getFavoriteMovies(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((movies: any) => {
-      this.favoriteMovies = movies;
+    this.fetchApiData.getAllMovies().subscribe((movies: any) => {
+      // Фильтруем фильмы, чтобы отобразить только избранные
+      this.favoriteMovies = movies.filter((movie: any) => this.user.FavoriteMovies.includes(movie._id));
     });
   }
 

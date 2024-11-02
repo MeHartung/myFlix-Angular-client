@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list'; // Импортируем MatListModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy, CommonModule } from '@angular/common';
 
@@ -59,6 +60,7 @@ const appRoutes: Routes = [
     MatSnackBarModule,
     MatIconModule,
     MatToolbarModule, // Добавлен MatToolbarModule
+    MatListModule, // Добавлен MatListModule для поддержки mat-list и mat-list-item
     BrowserAnimationsModule,
     CommonModule
   ],
