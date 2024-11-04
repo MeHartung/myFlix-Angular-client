@@ -2,6 +2,10 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+/**
+ * Component to display information about a movie director in a dialog.
+ * Receives director data (name, biography, birth and death dates) via MAT_DIALOG_DATA injection.
+ */
 @Component({
   selector: 'app-director-dialog',
   template: `
@@ -26,5 +30,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   `]
 })
 export class DirectorDialogComponent {
+  /**
+   * @param data - The data injected into the dialog, containing director's details: name, bio, birth, and death dates.
+   */
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

@@ -1,6 +1,9 @@
-// src/app/app.component.ts
 import { Component } from '@angular/core';
 
+/**
+ * Root component of the application.
+ * Acts as a container for other components.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

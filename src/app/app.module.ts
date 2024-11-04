@@ -11,7 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list'; // Импортируем MatListModule
+import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy, CommonModule } from '@angular/common';
 
@@ -26,10 +26,13 @@ import { SynopsisDialogComponent } from './synopsis-dialog/synopsis-dialog.compo
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
+/**
+ * Defines application routes.
+ */
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
-  { path: 'profile', component: UserProfileComponent }, // Путь для профиля пользователя
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }
 ];
 
@@ -44,7 +47,7 @@ const appRoutes: Routes = [
     DirectorDialogComponent,
     SynopsisDialogComponent,
     NavbarComponent,
-    UserProfileComponent // Зарегистрирован UserProfileComponent
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +62,8 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    MatToolbarModule, // Добавлен MatToolbarModule
-    MatListModule, // Добавлен MatListModule для поддержки mat-list и mat-list-item
+    MatToolbarModule,
+    MatListModule,
     BrowserAnimationsModule,
     CommonModule
   ],

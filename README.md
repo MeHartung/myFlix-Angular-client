@@ -1,27 +1,90 @@
-# MyFlixAngularClient
+MyFlixAngularClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+MyFlixAngularClient is a responsive web application built with Angular that allows users to browse movies, register an account, log in, and manage their profile. The app is designed to connect with a backend API to fetch and display movie-related data, enabling a smooth and interactive user experience.
 
-## Development server
+Live Link: MyFlixAngularClient
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Table of Contents
 
-## Code scaffolding
+    •	Features
+    •	Technologies
+    •	Setup Instructions
+    •	Usage
+    •	Documentation
+    •	License
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Features
 
-## Build
+    •	User Registration and Login: Users can create an account and log in to access personalized features.
+    •	Movie Browser: Browse a list of movies, view details about each movie, including genre and director information.
+    •	Favorites Management: Add or remove movies from your list of favorites.
+    •	Profile Management: Update user profile information or delete the account.
+    •	Responsive Design: Fully optimized for desktop and mobile devices.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Technologies
 
-## Running unit tests
+    •	Frontend Framework: Angular (v18.2.10)
+    •	UI Components: Angular Material
+    •	Styling: SCSS
+    •	Backend API: MyFlix API (separately developed)
+    •	Documentation: Generated with TypeDoc
+    •	Deployment: GitHub Pages
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Setup Instructions
 
-## Running end-to-end tests
+Prerequisites
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Make sure you have the following installed:
 
-## Further help
+    •	Node.js (v12 or above)
+    •	Angular CLI (v18.2.10 or above)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Installation
+
+    1.	Clone the repository:
+
+    git clone https://github.com/MeHartung/myFlix-Angular-client.git
+
+cd myFlix-Angular-client
+
+    2.	Install dependencies:
+
+    npm install
+
+    Development Server
+
+To start a development server:
+
+ng serve
+
+Navigate to http://localhost:4200/ in your web browser. The app will automatically reload if you make changes to the source files.
+
+Building the Project
+
+To build the project for production, run:
+
+ng build
+
+The build artifacts will be stored in the dist/ directory.
+
+Documentation
+
+Documentation for the project is generated using TypeDoc and can be found in the docs folder. To regenerate the documentation, run:
+
+npx typedoc
+
+Running Tests
+
+    •	Unit Tests: Run ng test to execute the unit tests via Karma.
+    •	End-to-End Tests: Run ng e2e to execute end-to-end tests. Note: To use this command, you may need to install additional packages.
+
+Usage
+
+    •	Register: Sign up by providing user details.
+    •	Login: Use your credentials to log into the app.
+    •	Browse Movies: View a collection of movies and explore details about each one, such as genre and director information.
+    •	Manage Profile: Update your profile information, add/remove favorite movies, or delete your account.
+
+License
+
+This project is licensed under the MIT License.
